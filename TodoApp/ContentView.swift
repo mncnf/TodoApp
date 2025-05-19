@@ -11,9 +11,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ListRow(task: "散歩")
-                ListRow(task: "料理")
-                ListRow(task: "筋トレ")
+                ListRow(task: "散歩", isCheck: true)
+                ListRow(task: "料理", isCheck: false)
+                ListRow(task: "筋トレ", isCheck: true)
                 Text("+")
                     .font(.title)
             }
