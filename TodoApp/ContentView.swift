@@ -7,13 +7,30 @@
 
 import SwiftUI
 
+struct Task: Identifiable {
+    let id = UUID()
+    var title: String
+    var checked: Bool
+
+    init(title: String, checked: Bool) {
+        self.title = title
+        self.checked = checked
+    }
+}
+
 struct ContentView: View {
+    var tasks = [
+        Task(title: "散歩", checked: true),
+        Task(title: "料理", checked: true),
+        Task(title: "筋トレ", checked: true)
+    ]
+
     var body: some View {
         NavigationView {
             List {
-                ListRow(task: "散歩", isCheck: true)
-                ListRow(task: "料理", isCheck: false)
-                ListRow(task: "筋トレ", isCheck: true)
+                ForEach(tasks) { task in
+                    ListRow(task: task.title, isCheck: task.checked)
+                }
                 Text("+")
                     .font(.title)
             }
