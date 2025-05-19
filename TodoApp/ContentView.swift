@@ -24,8 +24,16 @@ struct ContentView: View {
                         ListRow(task: task.title, isCheck: task.checked)
                     }
                 }
-                Text("+")
-                    .font(.title)
+                if self.userData.isEditing {
+                    Draft()
+                } else {
+                    Button(action: {
+                        self.userData.isEditing = true
+                    }) {
+                        Text("+")
+                            .font(.title)
+                    }
+                }
             }
             .navigationBarTitle(Text("Tasks"))
             .navigationBarItems(trailing: Button(action: {
