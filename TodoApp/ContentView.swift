@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var userData = UserData()
+    @EnvironmentObject var userData: UserData
 
     var body: some View {
         NavigationView {
@@ -51,4 +51,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(UserData())
 }
