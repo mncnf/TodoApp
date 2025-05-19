@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(userData.tasks) { task in
+                ForEach(self.userData.tasks) { task in
                     Button(action: {
                         guard let index = self.userData.tasks.firstIndex(of: task) else {
                             return
@@ -28,8 +28,16 @@ struct ContentView: View {
                     .font(.title)
             }
             .navigationBarTitle(Text("Tasks"))
-            .navigationBarItems(trailing: Text("Delete"))
+            .navigationBarItems(trailing: Button(action: {
+                self.DeleteTask()
+            })
+                { Text("Delete") })
         }
+    }
+
+    func DeleteTask() {
+        let necessaryTask = self.userData.tasks.filter { !$0.checked }
+        self.userData.tasks = necessaryTask
     }
 }
 
